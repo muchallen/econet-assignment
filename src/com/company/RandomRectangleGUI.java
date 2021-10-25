@@ -62,23 +62,52 @@ public class RandomRectangleGUI{
         }
 
         public void randomSize(){
+
             int displace_value = 5;
             rectangle_height = (int)(Math.random()*getHeight());
             rectangle_width = (int)(Math.random()*getWidth());
 
+
             int temporary_value;
-            if ((start_point_y + rectangle_height) > getHeight()){  // this to keep all of the height of the rectangle inside the draw panel
+            if (isRectangleHeightGreaterThanFrameHeight()){  // this to keep all of the height of the rectangle inside the draw panel
                 temporary_value = getHeight() - (start_point_y + rectangle_height);
                 rectangle_height = rectangle_height + temporary_value - displace_value;  // temp is a negative number
             }
-            if (rectangle_height < 5) rectangle_height = 5;//minimum height
+            if (isHeightLessThanMinimumHeight()) rectangle_height = 5;//minimum height
 
-            if ((start_point_x + rectangle_height) > getWidth()){  // this to keep all of the width of the rectangle inside the draw panel
+            if (isRectangleWidthGreaterThanFrameWidth()){  // this to keep all of the width of the rectangle inside the draw panel
                 temporary_value = getWidth() - (start_point_x + rectangle_width);
                 rectangle_width = rectangle_width + temporary_value - displace_value;  // temp is a negative number
             }
-            if (rectangle_width < 5) rectangle_width = 5; //minimum width
+            if (isWidthLessThanMinimumWidth()) rectangle_width = 5; //minimum width
+
         }
+
+
+        private boolean isRectangleHeightGreaterThanFrameHeight () {
+            if ((start_point_y + rectangle_height) > getHeight())
+                return true;
+            return false;
+        }
+
+        private boolean isRectangleWidthGreaterThanFrameWidth () {
+            if ((start_point_x + rectangle_width) > getWidth())
+                return true;
+            return false;
+        }
+
+        private boolean isHeightLessThanMinimumHeight(){
+            if (rectangle_height < 5)
+                return true;
+            return false;
+        }
+
+        private boolean isWidthLessThanMinimumWidth(){
+            if (rectangle_width < 5)
+                return true;
+            return false;
+        }
+
     }
 
     class RandomColorListener implements ActionListener {
