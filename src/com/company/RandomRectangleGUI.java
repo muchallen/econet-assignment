@@ -43,15 +43,15 @@ public class RandomRectangleGUI{
 
     class RandomRectDrawPanel extends JPanel{
         Color color;
-        int height = 50;
-        int width = 80;
+        int rectangle_height = 50;
+        int rectangle_width = 80;
         int start_point_x = 50;
         int start_point_y = 50;
 
         public void paintComponent (Graphics g){
             super.paintComponent(g);
             g.setColor(color);
-            g.fillRect(start_point_x,start_point_y,width,height);
+            g.fillRect(start_point_x,start_point_y,rectangle_width,rectangle_height);
         }
 
         public void randomColor(){
@@ -62,22 +62,22 @@ public class RandomRectangleGUI{
         }
 
         public void randomSize(){
-            int displace = 5;
-            height = (int)(Math.random()*getHeight());
-            width = (int)(Math.random()*getWidth());
+            int displace_value = 5;
+            rectangle_height = (int)(Math.random()*getHeight());
+            rectangle_width = (int)(Math.random()*getWidth());
 
-            int temp;
-            if ((start_point_y + height) > getHeight()){  // this to keep all of the height of the rectangle inside the draw panel
-                temp = getHeight() - (start_point_y + height);
-                height = height + temp - displace;  // temp is a negative number
+            int temporary_value;
+            if ((start_point_y + rectangle_height) > getHeight()){  // this to keep all of the height of the rectangle inside the draw panel
+                temporary_value = getHeight() - (start_point_y + rectangle_height);
+                rectangle_height = rectangle_height + temporary_value - displace_value;  // temp is a negative number
             }
-            if (height < 5) height = 5;//minimum height
+            if (rectangle_height < 5) rectangle_height = 5;//minimum height
 
-            if ((start_point_x + width) > getWidth()){  // this to keep all of the width of the rectangle inside the draw panel
-                temp = getWidth() - (start_point_x + width);
-                width = width + temp - displace;  // temp is a negative number
+            if ((start_point_x + rectangle_height) > getWidth()){  // this to keep all of the width of the rectangle inside the draw panel
+                temporary_value = getWidth() - (start_point_x + rectangle_width);
+                rectangle_width = rectangle_width + temporary_value - displace_value;  // temp is a negative number
             }
-            if (width < 5) width = 5; //minimum width
+            if (rectangle_width < 5) rectangle_width = 5; //minimum width
         }
     }
 
@@ -102,7 +102,7 @@ public class RandomRectangleGUI{
         @Override
         public void actionPerformed(ActionEvent e) {
             drawPanel.randomSize();
-            frame.repaint(drawPanel.start_point_x,drawPanel.start_point_y,drawPanel.width,drawPanel.height);
+            frame.repaint(drawPanel.start_point_x,drawPanel.start_point_y,drawPanel.rectangle_width,drawPanel.rectangle_width);
         }
     }
 
